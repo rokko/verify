@@ -5,7 +5,7 @@ import { inAppWallet } from "thirdweb/wallets";
 
 import sfondo from './sfondo.png'
 import logo from './logo.png'
-import axios from "axios";
+//import axios from "axios";
 
 const client = createThirdwebClient({
     clientId: "5e2546b2207cd1ef9e02d30d3b50f7d7"
@@ -35,6 +35,7 @@ const Verify = () => {
       if (match && match[1]) {
         setUsername(match[1]); // Imposta il nome utente
         console.log(match[1])
+        console.log(username)
       }
     }, []);
     useEffect(() => {
