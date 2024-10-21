@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { createThirdwebClient } from "thirdweb";
-import { ConnectButton, useActiveAccount } from "thirdweb/react"
+import { ConnectButton } from "thirdweb/react"
 import { inAppWallet } from "thirdweb/wallets";
 
 import sfondo from './sfondo.png'
@@ -22,7 +22,7 @@ const wallets = [
 const Verify = () => {
     const [username, setUsername] = useState<string | null>(null);
     const [confirm,setConfirm] = useState<boolean | null>(null);
-    var user: string|null = null
+    let user: string|null = null
     useEffect(() => {
       // Ottieni l'URL corrente
       const currentUrl = window.location.href;
@@ -30,6 +30,7 @@ const Verify = () => {
       // Verifica se l'URL contiene 'verify/' e ottieni il nome utente
       const regex = /verify\/([^/]+)/; // Regex per estrarre il nome utente
       const match = currentUrl.match(regex);
+      console.log(username)
   
       if (match && match[1]) {
         setUsername(match[1]); // Imposta il nome utente
@@ -71,6 +72,8 @@ const Verify = () => {
                             
                             axios.post('http://localhost:8080/verify', { user_id:user}).then((response) => {
                                 setConfirm(true)
+
+                                console.log(response)
                             })
                            
                         }}
@@ -85,7 +88,7 @@ const Verify = () => {
                 <div style={{display:'flex', flexDirection:'column',gap:'1rem'}}>
 
                 
-                    <a href="https://discord.gg/besteam" style={{textDecoration:'none'}}><button className="button-verify"><p className="testo-button">NEXT</p></button></a>
+                    <a href="https://discord.gg/besteam" className="button-verify" style={{textDecoration:'none'}}><p className="testo-button">NEXT</p></a>
                     <p className="testo1" style={{fontWeight:'700!important'}}>Verify completed,<br/>
                     Join Community Cup!.</p>
                 </div>
