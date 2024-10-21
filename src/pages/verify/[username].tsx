@@ -5,6 +5,7 @@ import { inAppWallet } from "thirdweb/wallets";
 
 import sfondo from './sfondo.png'
 import logo from './logo.png'
+import axios from "axios";
 //import axios from "axios";
 
 const client = createThirdwebClient({
@@ -19,11 +20,9 @@ const wallets = [
     }),
 ];
 const Verify = () => {
-
-    const prova = useActiveAccount()
     const [username, setUsername] = useState<string | null>(null);
     const [confirm,setConfirm] = useState<boolean | null>(null);
-
+    var user: string|null = null
     useEffect(() => {
       // Ottieni l'URL corrente
       const currentUrl = window.location.href;
@@ -34,15 +33,10 @@ const Verify = () => {
   
       if (match && match[1]) {
         setUsername(match[1]); // Imposta il nome utente
-        console.log(match[1])
-        console.log(username)
+        user=match[1]
       }
-    }, []);
-    useEffect(() => {
-        if (prova) {
-            console.log(prova)
-        }
-    }, [prova])
+    },[]);
+
     return (
         <div style={{
             margin: '0 auto',
@@ -73,12 +67,12 @@ const Verify = () => {
                           }}
 
                         onConnect={() => {
-                            /* da abilitare quando su è il server
-                            axios.post('http://localhost:8080/confirm', { user_id: username }).then((response) => {
+
+                            
+                            axios.post('http://localhost:8080/verify', { user_id:user}).then((response) => {
                                 setConfirm(true)
-                                
-                            })*/
-                           setConfirm(true)
+                            })
+                           
                         }}
 
                         
