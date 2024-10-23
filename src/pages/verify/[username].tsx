@@ -70,7 +70,12 @@ const Verify = () => {
                         onConnect={() => {
 
                             
-                            axios.post('http://localhost:8080/verify', { user_id:user}).then((response) => {
+                            axios.post('http://localhost:8080/verify', { user_id:user},{
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                }
+                              }
+                            ).then((response) => {
                                 setConfirm(true)
 
                                 console.log(response)
